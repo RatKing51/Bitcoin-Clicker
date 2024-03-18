@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Coustard:wght@400;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Coustard';
+}
+
+.app{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #7798AB;
+}
+
+#clickerImage{
+    width: 256px;
+    height: 256px;
+    transition: .15s ease-in;
+}
+
+.left-container{
+    width: 30%;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7798AB;
+}
+
+.clicker-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    height: 600px;
+}
+
+.click-container{
+    background-image: url("/src/imgs/Bitcoin-Logo.png");
+    background-size: contain;
+    width: 300px;
+    height: 50%;
+    border: 5px solid black;
+    border-radius: 50%;
+    transition: .1s ease-in;
+    position: relative;
+}
+
+.click-container > .number{
+    z-index: 99;
+    font-size: 24px;
+    color: black;
+    position: absolute;
+}
+
+.click-container:hover{
+    transform: scale(1.03);
+}
+
+
+.click-container:active{
+    transform: scale(1);
+}
+
+
+#clickerImage:hover{
+    transform: scale(1.1);
+}
+
+#clickerImage:active{
+    transform: scale(1);
+}
+
+.score-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.middle-container{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid black;
+    width: 40%;
+    border-left: none;
+}
+
+.info-container{
+    border-bottom: 5px solid black;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #7798AB;
+}
+
+.buildings-containers{ 
+    background-color: #141e20;
+    height: 85%;
+}
+
+.info-button{
+    width: 10rem;
+    height: 2rem;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #141e20;
+    color: white;
+    margin: 0 10px;
+    transition: .2s ease-in;
+}
+
+.info-button:hover{
+    transform: scale(0.9);
+}
+
+.info-button:active{
+    transform: rotateY(15deg);
+}
+
+.right-container{
+    width: 30%;
+    border: 5px solid black;
+    border-left: none;
+}
+
+.upgrades-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 15%;
+    border: 5px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop-container{
+    overflow-y: scroll;
+    height: 83%;
+    display: flex;
+    justify-content: center;
+}
+
+.shop-card{
+    width: 95%;
+    height: 15%;
+    border: 5px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+    border-radius: 10px;
+    background-color: #141e20;
+    color: white;
+    transition: .2s ease-in;
+}
+
+.shop-card:hover{
+    transform: scale(1.01);
+}
+
+.shop-card img{
+    width: 64px;
+    height: 64px;
+}
+
+.shop-info-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.building-display-container{
+    visibility: hidden;
+    border: 5px solid black;
+    height: 20%;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #7798AB;
+    position: relative;
+    overflow-y: hidden;
+
+}
+
+.building-display-img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
