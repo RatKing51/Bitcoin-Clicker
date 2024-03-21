@@ -187,7 +187,7 @@ var game = {
             "A human to mine your crypto"
         ],
         img: [
-            "./imgs/human-image.jpeg"
+            "human-image.jpeg"
         ],
 
         purchase: function(i){
@@ -216,7 +216,7 @@ var game = {
             "This will doubles your workers income!!"
         ],
         img: [
-            "./imgs/human-image.jpeg"
+            "human-image.jpeg"
         ],
         // 0 = building 1 = clicker
         type:[
