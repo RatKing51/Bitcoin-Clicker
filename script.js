@@ -7,7 +7,7 @@ Stack Overflow
 function getElement(element) {return document.getElementById(element)}
 
 var user = {
-    money: 9999999,
+    money: 0 ,
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0
@@ -147,6 +147,26 @@ var game = {
                 }
             }
             
+        },
+
+        displayUpgrade: function() {
+            var container = getElement("upgradesContainer");
+            container.innerHTML = ""
+            for(i=0; i < game.upgrades.title.length; i++){
+                if(game.upgrades.owned[i] == false){
+                    if (game.upgrades.type[i] == 0){
+                        if(game.upgrades.need[i] <= game.buildings.amount[game.upgrades.i[i]]){
+                            
+                            container.innerHTML += `
+                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
+                            `
+                        }
+                    }
+                }
+                else{
+                    container.innerHTML += ""
+                }
+            }
         }
     },
 
@@ -167,7 +187,7 @@ var game = {
             "A human to mine your crypto"
         ],
         img: [
-            "/src/imgs/human-image.jpeg"
+            "/imgs/human-image.jpeg"
         ],
 
         purchase: function(i){
@@ -180,7 +200,50 @@ var game = {
                 game.display.clickerContainer()
                 user.moneyPerSecond += this.income[i];
                 game.display.displayBuildings()
+                game.display.displayUpgrade()
             }
+        }
+    },
+
+    upgrades: {
+        title: [
+            "Faster Workers"
+        ],
+        cost: [
+            1500
+        ],
+        description: [
+            "This will doubles your workers income!!"
+        ],
+        img: [
+            "/imgs/human-image.jpeg"
+        ],
+        // 0 = building 1 = clicker
+        type:[
+            0
+        ],
+        outcome: [
+            2
+        ],
+        need: [
+            1
+        ],
+        owned: [
+            false
+        ],
+        i: [
+            0
+        ],
+        purchase: function(i) {
+            // Building
+            if(user.money >= this.cost[i] && this.owned[i] == false){
+                if (this.type[i] == 0){
+                    user.money -= this.cost[i];
+                    this.owned[i] = true;
+                    game.buildings.income[this.i[i]] += game.buildings.income[this.i[i]] * this.outcome[i]
+                }
+            }
+            
         }
     },
 
@@ -193,6 +256,7 @@ var game = {
 getElement("clickContainer").addEventListener('click', function(event){
     game.inputs.click();
     game.display.addClickNumber(event)
+    game.display.displayUpgrade()
 }, false);
 
 
@@ -201,4 +265,5 @@ var tick = setInterval(() => {
     game.display.clickerContainer()
     game.display.spawnBuildings()
     game.addMoneyPerSecond()
+    game.display.displayUpgrade()
 }, 1000)

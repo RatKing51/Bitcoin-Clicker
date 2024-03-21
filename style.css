@@ -4,6 +4,11 @@
     margin: 0;
     padding: 0;
     font-family: 'Coustard';
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .app{
@@ -37,7 +42,7 @@
 }
 
 .click-container{
-    background-image: url("/src/imgs/Bitcoin-Logo.png");
+    background-image: url("/imgs/Bitcoin-Logo.png");
     background-size: contain;
     width: 300px;
     height: 50%;
@@ -137,9 +142,20 @@
     border-left: none;
     border-right: none;
     border-top: none;
-    justify-content: center;
+    
     align-items: center;
+    overflow-y: scroll;
 }
+
+.upgrade-img{
+    width: 64px;
+    height: 64px;
+    border: 5px solid black;
+    border-radius: 10px;
+    transition: .1s ease-in;
+}
+
+.upgrade-img:hover{border-color: #141e20; transform: rotate(5deg);}
 
 .shop-container{
     overflow-y: scroll;
@@ -185,7 +201,7 @@
     border-radius: 10px;
     background-color: #7798AB;
     position: relative;
-    overflow-y: hidden;
+    overflow-x: scroll;
 
 }
 
