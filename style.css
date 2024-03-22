@@ -161,7 +161,8 @@
     overflow-y: scroll;
     height: 83%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .shop-card{
@@ -171,7 +172,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 10px 0;
+    margin: 2px 0;
     border-radius: 10px;
     background-color: #141e20;
     color: white;
@@ -185,12 +186,14 @@
 .shop-card img{
     width: 64px;
     height: 64px;
+    border-radius: 10px;
 }
 
 .shop-info-container{
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-size: 10px;
 }
 
 .building-display-container{
@@ -206,7 +209,9 @@
 }
 
 .building-display-img {
-    width: 100px;
-    height: 100px;
+    width: 64px;
+    height: 64px;
     position: absolute;
+    border: 3.5px solid grey;
+    border-radius: 10px;
 }

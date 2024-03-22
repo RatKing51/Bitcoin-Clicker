@@ -10,13 +10,15 @@ var user = {
     money: 0 ,
     moneyPerClick: 1,
     moneyPerSecond: 0,
-    totalMoney: 0
+    totalMoney: 0,
+    totalClicks: 0
 }
 
 var game = {
     inputs: {
         click: function(){
             user.money += user.moneyPerClick;
+            user.totalClicks++;
             game.display.clickerContainer()
         }
     },
@@ -121,6 +123,7 @@ var game = {
 
         displayBuildings: function(){
             var humanContainer = getElement("humanContainer");
+            var oldComputerContainer = getElement("oldComputerContainer")
             if (game.buildings.amount[0] <= 0){
                 humanContainer.style.visibility = "hidden";
             }
@@ -146,6 +149,31 @@ var game = {
                     humanContainer.appendChild(element)
                 }
             }
+            if (game.buildings.amount[1] <= 0){
+                oldComputerContainer.style.visibility = "hidden";
+            }
+            if (game.buildings.amount[1] > 0){
+                oldComputerContainer.style.visibility = "visible";
+                oldComputerContainer.innerHTML = ""
+                for(i=0; i<game.buildings.amount[1]; i++){
+                    let element = document.createElement("img");
+                    element.src = game.buildings.img[1];
+                    element.classList.add("building-display-img")
+                    let left;
+                    if(i == 0){
+                        left = 0
+                    }
+                    else{
+                        left = (i * 100) - 75;
+                    }
+                    const top = Math.random() * 75
+                    element.style.left = left + "px"
+                    element.style.top = top + "px"
+                    
+
+                    oldComputerContainer.appendChild(element)
+                }
+            }
             
         },
 
@@ -162,6 +190,13 @@ var game = {
                             `
                         }
                     }
+                    if (game.upgrades.type[i] == 1){
+                        if(game.upgrades.need[i] <= user.totalClicks){
+                            container.innerHTML += `
+                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
+                            `
+                        }
+                    }
                 }
                 else{
                     container.innerHTML += ""
@@ -172,22 +207,28 @@ var game = {
 
     buildings: {
         title: [
-            "Human"
+            "Human",
+            "Slow Computer"
         ],
         cost: [
-            150
+            150,
+            500
         ],
         income: [
-            0.1
+            0.5,
+            1
         ],
         amount: [
+            0,
             0
         ],
         description: [
-            "A human to mine your crypto"
+            "A human to mine your crypto",
+            "This mines crypto but it sucks like crap"
         ],
         img: [
-            "human-image.jpeg"
+            "human-image.jpeg",
+            "old-computer.jpg"
         ],
 
         purchase: function(i){
@@ -207,40 +248,62 @@ var game = {
 
     upgrades: {
         title: [
-            "Faster Workers"
+            "Faster Workers",
+            "More Clicker"
         ],
         cost: [
+            1500,
             1500
         ],
         description: [
-            "This will doubles your workers income!!"
+            "This will doubles your workers income!!",
+            "This will double your cursors income"
         ],
         img: [
-            "human-image.jpeg"
+            "human-image.jpeg",
+            "cursor.webp"
         ],
-        // 0 = building 1 = clicker
+        // 0 = building 1 = clicker 2 = click add
         type:[
-            0
+            0,
+            1
         ],
         outcome: [
+            2,
             2
         ],
         need: [
+            1,
             1
         ],
         owned: [
+            false,
             false
         ],
         i: [
-            0
+            0,
+            false
         ],
         purchase: function(i) {
-            // Building
+            
             if(user.money >= this.cost[i] && this.owned[i] == false){
                 if (this.type[i] == 0){
                     user.money -= this.cost[i];
                     this.owned[i] = true;
                     game.buildings.income[this.i[i]] += game.buildings.income[this.i[i]] * this.outcome[i]
+                    game.display.clickerContainer()
+                    game.display.displayBuildings()
+                    game.display.displayUpgrade()
+                    game.display.spawnBuildings()
+                }
+                if (this.type[i] == 1){
+                    user.money -= this.cost[i];
+                    this.owned[i] = true;
+                    user.moneyPerClick = this.outcome[i] * user.moneyPerClick
+                    game.display.clickerContainer()
+                    game.display.displayBuildings()
+                    game.display.displayUpgrade()
+                    game.display.spawnBuildings()
                 }
             }
             
