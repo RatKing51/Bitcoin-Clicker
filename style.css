@@ -74,7 +74,7 @@
 }
 
 #clickerImage:active{
-    transform: scale(1);
+   transform: scale(1);
 }
 
 .score-container{
@@ -217,3 +217,38 @@
     border: 3.5px solid grey;
     border-radius: 10px;
 }
+
+.stats-container{
+    position: absolute;
+    width: 22%;
+    height: 40%;
+    background-color: #7798AB;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 5px solid black;
+    border-radius: 10px;
+    top: 17%;
+    left: 38%;
+    visibility: hidden;
+    transition: .2s ease-in;
+}
+
+.about-container{
+    position: absolute;
+    width: 22%;
+    height: 40%;
+    background-color: #7798AB;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 5px solid black;
+    border-radius: 10px;
+    top: 17%;
+    left: 38%;
+    visibility: hidden;
+    transition: .2s ease-in;
+}
+

@@ -7,7 +7,7 @@ Stack Overflow
 function getElement(element) {return document.getElementById(element)}
 
 var user = {
-    money: 1000000 ,
+    money: 0,
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0,
@@ -281,6 +281,17 @@ var game = {
                     container.innerHTML += ""
                 }
             }
+        },
+        updateStats: function(){
+            var mpsElement = getElement("moneyPerSecond");
+            var totalMoneyElement = getElement("totalMoney");
+            var totalClicksElement = getElement("totalClicks");
+            var moneyPerClickElement = getElement("moneyPerClick");
+            mpsElement.textContent = user.moneyPerSecond;
+            totalMoneyElement.textContent = user.totalMoney;
+            totalClicksElement.textContent = user.totalClicks;
+            moneyPerClickElement.textContent = user.moneyPerClick;
+
         }
     },
 
@@ -346,40 +357,67 @@ var game = {
     upgrades: {
         title: [
             "Faster Workers",
-            "More Clicker"
+            "More Clicker",
+            "Beter Keycaps",
+            "More Ram",
+            "Faster DPI",
+            ""
         ],
         cost: [
             1500,
-            1500
+            1500,
+            5000,
+            3500
         ],
         description: [
             "This will doubles your workers income!!",
-            "This will double your cursors income"
+            "This will double your cursors income",
+            "This will double your better keyboard income.",
+            "This will double your old computer income.",
+            "This will double your better mouse income."
         ],
         img: [
             "human-image.jpeg",
-            "cursor.webp"
+            "cursor.webp",
+            "better-keyboard.jpeg",
+            "old-computer.jpg",
+            "better-mouse.jpeg"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
             0,
-            1
+            1,
+            0,
+            0,
+            0
         ],
         outcome: [
+            2,
+            2,
+            2,
             2,
             2
         ],
         need: [
             1,
+            1,
+            1,
+            1,
             1
         ],
         owned: [
+            false,
+            false,
+            false,
             false,
             false
         ],
         i: [
             0,
-            false
+            false,
+            2,
+            1,
+            3
         ],
         purchase: function(i) {
             
@@ -419,6 +457,24 @@ getElement("clickContainer").addEventListener('click', function(event){
     game.display.displayUpgrade()
 }, false);
 
+getElement("statsButton").addEventListener("mouseover", () => {
+    getElement("statContainer").style.visibility = "visible";
+    game.display.updateStats()
+})
+
+getElement("statsButton").addEventListener("mouseout", () => {
+    getElement("statContainer").style.visibility = "hidden";
+})
+
+getElement("aboutButton").addEventListener("mouseover", () => {
+    getElement("aboutContainer").style.visibility = "visible";
+})
+
+getElement("aboutButton").addEventListener("mouseout", () => {
+    getElement("aboutContainer").style.visibility = "hidden";
+})
+
+
 
 // tick
 var tick = setInterval(() => {
@@ -426,4 +482,6 @@ var tick = setInterval(() => {
     game.display.spawnBuildings()
     game.addMoneyPerSecond()
     game.display.displayUpgrade()
+    game.display.updateStats()
 }, 1000)
+
