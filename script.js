@@ -332,11 +332,11 @@ var game = {
             "This gives you more desk space for more monitors."
         ],
         img: [
-            "human-image.jpeg",
-            "old-computer.jpg",
-            "better-keyboard.jpeg",
-            "better-mouse.jpeg",
-            "better-desk.jpeg"
+            "./imgs/human-image.jpeg",
+            "./imgs/old-computer.jpg",
+            "./imgs/better-keyboard.jpeg",
+            "./imgs/better-mouse.jpeg",
+            "./imgs/better-desk.jpeg"
         ],
 
         purchase: function(i){
@@ -377,11 +377,11 @@ var game = {
             "This will double your better mouse income."
         ],
         img: [
-            "human-image.jpeg",
-            "cursor.webp",
-            "better-keyboard.jpeg",
-            "old-computer.jpg",
-            "better-mouse.jpeg"
+            "./imgs/human-image.jpeg",
+            "./imgs/cursor.webp",
+            "./imgs/better-keyboard.jpeg",
+            "./imgs/old-computer.jpg",
+            "./imgs/better-mouse.jpeg"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[

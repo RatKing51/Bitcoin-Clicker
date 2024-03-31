@@ -42,7 +42,7 @@
 }
 
 .click-container{
-    background-image: url("Bitcoin-Logo.png");
+    background-image: url("./imgs/Bitcoin-Logo.png");
     background-size: contain;
     width: 300px;
     height: 50%;
