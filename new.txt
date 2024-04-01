@@ -4,7 +4,6 @@ Plan to add:
         2a. Business Men
         3a. Company
     2. Upgrades for said buildings
-    3. Save Feature
-    4. Work on graphics
-    5. Leaderboard??
+    3. Work on graphics
+    4. Leaderboard??
     
