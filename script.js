@@ -332,8 +332,8 @@ var game = {
             "This gives you more desk space for more monitors."
         ],
         img: [
-            "./imgs/human-image.jpeg",
-            "./imgs/old-computer.jpg",
+            "./imgs/human-image.png",
+            "./imgs/old-computer.png",
             "./imgs/better-keyboard.jpeg",
             "./imgs/better-mouse.jpeg",
             "./imgs/better-desk.jpeg"
@@ -377,10 +377,10 @@ var game = {
             "This will double your better mouse income."
         ],
         img: [
-            "./imgs/human-image.jpeg",
+            "./imgs/human-image.png",
             "./imgs/cursor.webp",
             "./imgs/better-keyboard.jpeg",
-            "./imgs/old-computer.jpg",
+            "./imgs/old-computer.png",
             "./imgs/better-mouse.jpeg"
         ],
         // 0 = building 1 = clicker 2 = click add
