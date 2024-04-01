@@ -332,11 +332,11 @@ var game = {
             "This gives you more desk space for more monitors."
         ],
         img: [
-            "human-image.jpeg",
-            "old-computer.png",
-            "better-keyboard.jpeg",
-            "better-mouse.jpeg",
-            "better-desk.jpeg"
+            "./imgs/human-image.jpeg",
+            "./imgs/old-computer.jpg",
+            "./imgs/better-keyboard.jpeg",
+            "./imgs/better-mouse.jpeg",
+            "./imgs/better-desk.jpeg"
         ],
 
         purchase: function(i){
@@ -377,11 +377,11 @@ var game = {
             "This will double your better mouse income."
         ],
         img: [
-            "human-image.jpeg",
-            "cursor.webp",
-            "better-keyboard.jpeg",
-            "old-computer.jpg",
-            "better-mouse.jpeg"
+            "./imgs/human-image.jpeg",
+            "./imgs/cursor.webp",
+            "./imgs/better-keyboard.jpeg",
+            "./imgs/old-computer.jpg",
+            "./imgs/better-mouse.jpeg"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -445,6 +445,62 @@ var game = {
         }
     },
 
+    save: {
+        saveGame: function(){
+            var gameSave = {
+                money: user.money,
+                moneyPerClick: user.moneyPerClick,
+                totalClicks: user.totalClicks,
+                totalMoney: user.totalMoney,
+                moneyPerSecond: user.moneyPerSecond,
+                buildingCost: game.buildings.cost,
+                buildingAmount: game.buildings.amount,
+                buildingIncome: game.buildings.income,
+                upgradeOwned: game.upgrades.owned
+            }
+            localStorage.setItem("gameSave", JSON.stringify(gameSave))
+        },
+
+        loadGame: function(){
+            var savedGame = JSON.parse(localStorage.getItem("gameSave"))
+            if (localStorage.getItem("gameSave") !== null){
+                if (typeof savedGame.money !== "undefined") user.money = savedGame.money
+                if (typeof savedGame.moneyPerClick !== "undefined") user.moneyPerClick = savedGame.moneyPerClick
+                if (typeof savedGame.totalClicks !== "undefined") user.totalClicks = savedGame.totalClicks
+                if (typeof savedGame.totalMoney !== "undefined") user.totalMoney = savedGame.totalMoney
+                if (typeof savedGame.moneyPerSecond !== "undefined") user.moneyPerSecond = savedGame.moneyPerSecond
+                if (typeof savedGame.buildingCost !== "undefined"){
+                    for (i=0; i<savedGame.buildingCost.length; i++){
+                        game.buildings.cost[i] = savedGame.buildingCost[i]
+                    }
+                }
+                if (typeof savedGame.buildingAmount.length !== "undefined"){
+                    for (i=0; i<savedGame.buildingAmount.length; i++){
+                        game.buildings.amount[i] = savedGame.buildingAmount[i]
+                    }
+                }
+                if (typeof savedGame.buildingIncome.length !== "undefined"){
+                    for (i=0; i<savedGame.buildingIncome.length; i++){
+                        game.buildings.income[i] = savedGame.buildingIncome[i]
+                    }
+                }
+                if (typeof savedGame.upgradeOwned !== "undefined"){
+                    for (i=0; i<savedGame.upgradeOwned.length; i++){
+                        game.upgrades.owned[i] = savedGame.upgradeOwned[i]
+                    }
+                }
+            }
+        },
+
+        resetGame: function(){
+            if (confirm("Are you sure you want to reset your game?")){
+                var gameSave = {};
+                localStorage.setItem("gameSave", JSON.stringify(gameSave))
+                location.reload();
+            }
+        }
+    },
+
     addMoneyPerSecond: function(){
         user.money += user.moneyPerSecond
     }
@@ -484,4 +540,15 @@ var tick = setInterval(() => {
     game.display.displayUpgrade()
     game.display.updateStats()
 }, 1000)
+
+var tick30 = setInterval(() => {
+    game.save.saveGame()
+}, 30000)
+
+window.onload = () =>{
+    tick
+    game.save.loadGame()
+    game.display.displayBuildings()
+    game.save.saveGame()
+}
 

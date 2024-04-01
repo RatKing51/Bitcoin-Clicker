@@ -1,0 +1,10 @@
+Plan to add:
+    1. More buildings
+        1a. Office
+        2a. Business Men
+        3a. Company
+    2. Upgrades for said buildings
+    3. Save Feature
+    4. Work on graphics
+    5. Leaderboard??
+    
