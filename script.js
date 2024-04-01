@@ -333,7 +333,7 @@ var game = {
         ],
         img: [
             "human-image.jpeg",
-            "old-computer.jpg",
+            "old-computer.png",
             "better-keyboard.jpeg",
             "better-mouse.jpeg",
             "better-desk.jpeg"
