@@ -292,6 +292,16 @@ var game = {
             totalClicksElement.textContent = user.totalClicks;
             moneyPerClickElement.textContent = user.moneyPerClick;
 
+        },
+
+        displayAchievement: function(name, description, img){
+            var container = getElement("achievementContainer");
+            container.innerHTML += `
+            <div class="achievement-card" id="achievementCard" title="${description}">
+                <img src="${img}"/>
+                <p>${name}</p>
+            </div
+            `
         }
     },
 
@@ -445,6 +455,46 @@ var game = {
         }
     },
 
+    achievements: {
+        name: [
+            "One Starts All"
+        ],
+
+        description: [
+            "You Clicked the Bitcoin"
+        ],
+        // 0 click 1 building
+        type: [
+            0       
+        ],
+
+        whatNeeded: [
+            1
+        ],
+
+        owned: [
+            false
+        ],
+
+        img: [
+            "./imgs/cursor.webp"
+        ],
+
+        achieve: function(){
+            for(i=0; i<this.name.length; i++){
+                if(this.owned[i] == false){
+                    if(this.type[i] == 0){
+                        if(this.whatNeeded[i] <= user.totalClicks){
+                            game.display.displayAchievement(this.name[i], this.description[i], this.img[i])
+                            this.owned[i] = true
+                        }
+                    }
+                }
+            }
+        }
+
+    },
+
     save: {
         saveGame: function(){
             var gameSave = {
@@ -456,7 +506,8 @@ var game = {
                 buildingCost: game.buildings.cost,
                 buildingAmount: game.buildings.amount,
                 buildingIncome: game.buildings.income,
-                upgradeOwned: game.upgrades.owned
+                upgradeOwned: game.upgrades.owned,
+                achievementOwned: game.achievements.owned
             }
             localStorage.setItem("gameSave", JSON.stringify(gameSave))
         },
@@ -487,6 +538,11 @@ var game = {
                 if (typeof savedGame.upgradeOwned !== "undefined"){
                     for (i=0; i<savedGame.upgradeOwned.length; i++){
                         game.upgrades.owned[i] = savedGame.upgradeOwned[i]
+                    }
+                }
+                if (typeof savedGame.achievementOwned !== "undefined"){
+                    for (i=0; i<savedGame.achievementOwned.length; i++){
+                        game.achievements.owned[i] = savedGame.achievementOwned[i]
                     }
                 }
             }
@@ -539,6 +595,7 @@ var tick = setInterval(() => {
     game.addMoneyPerSecond()
     game.display.displayUpgrade()
     game.display.updateStats()
+    game.achievements.achieve()
 }, 1000)
 
 var tick30 = setInterval(() => {
