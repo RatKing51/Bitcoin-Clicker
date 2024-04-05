@@ -294,10 +294,10 @@ var game = {
 
         },
 
-        displayAchievement: function(name, description, img){
+        displayAchievement: function(name, description, img, i){
             var container = getElement("achievementContainer");
             container.innerHTML += `
-            <div class="achievement-card" id="achievementCard" title="${description}">
+            <div class="achievement-card" id="achievementCard${i}" title="${description}" onclick="removeAchievement(${i})>
                 <img src="${img}"/>
                 <p>${name}</p>
             </div
@@ -430,7 +430,6 @@ var game = {
             3
         ],
         purchase: function(i) {
-            
             if(user.money >= this.cost[i] && this.owned[i] == false){
                 if (this.type[i] == 0){
                     user.money -= this.cost[i];
@@ -485,12 +484,16 @@ var game = {
                 if(this.owned[i] == false){
                     if(this.type[i] == 0){
                         if(this.whatNeeded[i] <= user.totalClicks){
-                            game.display.displayAchievement(this.name[i], this.description[i], this.img[i])
+                            game.display.displayAchievement(this.name[i], this.description[i], this.img[i], i)
                             this.owned[i] = true
                         }
                     }
                 }
             }
+        },
+
+        removeAchievement: function(i){
+            getElement("achievementCard" + i).style.visibility = "hidden";
         }
 
     },
