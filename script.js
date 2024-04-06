@@ -1,5 +1,5 @@
 /*
-This is a clicker game made by Gage Billinger, some of the code from javascript is ideas from the game by Ortell Cookie Clicker.
+some of the code from javascript is ideas from the game by Ortell Cookie Clicker.
 Other Resources used are the world wide web.... lol
 Stack Overflow
 */
@@ -19,6 +19,7 @@ var game = {
         click: function(){
             user.money += user.moneyPerClick;
             user.totalClicks++;
+            user.totalMoney++;
         }
     },
 
