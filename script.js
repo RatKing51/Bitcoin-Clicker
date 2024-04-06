@@ -4,7 +4,7 @@ Other Resources used are the world wide web.... lol
 Stack Overflow
 */
 
-function getElement(element) {return document.getElementById(element)}
+function getElement(element) {return document.getElementById(element)};
 
 var user = {
     money: 0,
@@ -76,7 +76,7 @@ var game = {
            element.style.left = position.x + "px";
            element.style.top = position.y  + "px";
 
-           clicker.appendChild(element)
+           clicker.appendChild(element);
 
            let movementInterval = window.setInterval(() => {
                 if(typeof element == "undefined" && element == null){ clearInterval(movementInterval)};
@@ -92,11 +92,8 @@ var game = {
 
         spawnBuildings: function(){
             var shopContainer = getElement("shopContainer");
-            shopContainer.innerHTML = ""
+            shopContainer.innerHTML = "";
             for(i=0; i<game.buildings.title.length; i++){
-                if(user.money >= game.buildings.need[i] && game.buildings.owned[i] == false){
-                    game.buildings.owned[i] = true
-                }
                 if (game.buildings.owned[i] == true){
                     shopContainer.innerHTML += `
                     <div class="shop-card" id="${game.buildings.id[i]}" title="${game.buildings.description[i]}, Income: ${game.buildings.income[i]}" onclick="game.buildings.purchase(${i})">
@@ -107,7 +104,7 @@ var game = {
                         </div>
                         <h1>${game.buildings.amount[i]}</h1>
                     </div>
-                `
+                `;
                     /*if (!game.buildings.spawned[i]){
                         this.fadeIn(getElement(game.buildings.id[i]), 2, 1, function(){
                             game.buildings.spawned[i] = true
@@ -121,33 +118,33 @@ var game = {
 
         displayBuildings: function(){
             var humanContainer = getElement("humanContainer");
-            var oldComputerContainer = getElement("oldComputerContainer")
-            var betterKeyboardContainer = getElement("betterKeyboardContainer")
-            var betterMouseContainer = getElement("betterMouseContainer")
-            var betterDeskContainer = getElement("betterDeskContainer")
+            var oldComputerContainer = getElement("oldComputerContainer");
+            var betterKeyboardContainer = getElement("betterKeyboardContainer");
+            var betterMouseContainer = getElement("betterMouseContainer");
+            var betterDeskContainer = getElement("betterDeskContainer");
             if (game.buildings.amount[0] <= 0){
                 humanContainer.style.visibility = "hidden";
             }
             if (game.buildings.amount[0] > 0){
                 humanContainer.style.visibility = "visible";
-                humanContainer.innerHTML = ""
+                humanContainer.innerHTML = "";
                 for(i=0; i<game.buildings.amount[0]; i++){
                     let element = document.createElement("img");
                     element.src = game.buildings.img[0];
-                    element.classList.add("building-display-img")
+                    element.classList.add("building-display-img");
                     let left;
                     if(i == 0){
-                        left = 0
+                        left = 0;
                     }
                     else{
                         left = (i * 100) - 75;
                     }
-                    const top = Math.random() * 25
-                    element.style.left = left + "px"
-                    element.style.top = top + "px"
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
                     
 
-                    humanContainer.appendChild(element)
+                    humanContainer.appendChild(element);
                 }
             }
             if (game.buildings.amount[1] <= 0){
@@ -155,24 +152,24 @@ var game = {
             }
             if (game.buildings.amount[1] > 0){
                 oldComputerContainer.style.visibility = "visible";
-                oldComputerContainer.innerHTML = ""
+                oldComputerContainer.innerHTML = "";
                 for(i=0; i<game.buildings.amount[1]; i++){
                     let element = document.createElement("img");
                     element.src = game.buildings.img[1];
                     element.classList.add("building-display-img")
                     let left;
                     if(i == 0){
-                        left = 0
+                        left = 0;
                     }
                     else{
                         left = (i * 100) - 75;
                     }
-                    const top = Math.random() * 25
-                    element.style.left = left + "px"
-                    element.style.top = top + "px"
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
                     
 
-                    oldComputerContainer.appendChild(element)
+                    oldComputerContainer.appendChild(element);
                 }
             }
             if (game.buildings.amount[2] <= 0){
@@ -180,24 +177,24 @@ var game = {
             }
             if (game.buildings.amount[2] > 0){
                 betterKeyboardContainer.style.visibility = "visible";
-                betterKeyboardContainer.innerHTML = ""
+                betterKeyboardContainer.innerHTML = "";
                 for(i=0; i<game.buildings.amount[2]; i++){
                     let element = document.createElement("img");
                     element.src = game.buildings.img[2];
-                    element.classList.add("building-display-img")
+                    element.classList.add("building-display-img");
                     let left;
                     if(i == 0){
-                        left = 0
+                        left = 0;
                     }
                     else{
                         left = (i * 100) - 75;
                     }
-                    const top = Math.random() * 25
-                    element.style.left = left + "px"
-                    element.style.top = top + "px"
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
                     
 
-                    betterKeyboardContainer.appendChild(element)
+                    betterKeyboardContainer.appendChild(element);
                 }
             }
             if (game.buildings.amount[3] <= 0){
@@ -205,24 +202,24 @@ var game = {
             }
             if (game.buildings.amount[3] > 0){
                 betterMouseContainer.style.visibility = "visible";
-                betterMouseContainer.innerHTML = ""
+                betterMouseContainer.innerHTML = "";
                 for(i=0; i<game.buildings.amount[3]; i++){
                     let element = document.createElement("img");
                     element.src = game.buildings.img[3];
-                    element.classList.add("building-display-img")
+                    element.classList.add("building-display-img");
                     let left;
                     if(i == 0){
-                        left = 0
+                        left = 0;
                     }
                     else{
                         left = (i * 100) - 75;
                     }
-                    const top = Math.random() * 25
-                    element.style.left = left + "px"
-                    element.style.top = top + "px"
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
                     
 
-                    betterMouseContainer.appendChild(element)
+                    betterMouseContainer.appendChild(element);
                 }
             }
             if (game.buildings.amount[4] <= 0){
@@ -234,20 +231,20 @@ var game = {
                 for(i=0; i<game.buildings.amount[4]; i++){
                     let element = document.createElement("img");
                     element.src = game.buildings.img[4];
-                    element.classList.add("building-display-img")
+                    element.classList.add("building-display-img");
                     let left;
                     if(i == 0){
-                        left = 0
+                        left = 0;
                     }
                     else{
                         left = (i * 100) - 75;
                     }
-                    const top = Math.random() * 25
-                    element.style.left = left + "px"
-                    element.style.top = top + "px"
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
                     
 
-                    betterDeskContainer.appendChild(element)
+                    betterDeskContainer.appendChild(element);
                 }
             }
             
@@ -256,7 +253,7 @@ var game = {
 
         displayUpgrade: function() {
             var container = getElement("upgradesContainer");
-            container.innerHTML = ""
+            container.innerHTML = "";
             for(i=0; i < game.upgrades.title.length; i++){
                 if(game.upgrades.owned[i] == false){
                     if (game.upgrades.type[i] == 0){
@@ -264,19 +261,19 @@ var game = {
                             
                             container.innerHTML += `
                             <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
-                            `
+                            `;
                         }
                     }
                     if (game.upgrades.type[i] == 1){
                         if(game.upgrades.need[i] <= user.totalClicks){
                             container.innerHTML += `
                             <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
-                            `
+                            `;
                         }
                     }
                 }
                 else{
-                    container.innerHTML += ""
+                    container.innerHTML += "";
                 }
             }
         },
@@ -285,7 +282,7 @@ var game = {
             var totalMoneyElement = getElement("totalMoney");
             var totalClicksElement = getElement("totalClicks");
             var moneyPerClickElement = getElement("moneyPerClick");
-            mpsElement.textContent = user.moneyPerSecond;
+            mpsElement.textContent = user.moneyPerSecond
             totalMoneyElement.textContent = user.totalMoney;
             totalClicksElement.textContent = user.totalClicks;
             moneyPerClickElement.textContent = user.moneyPerClick;
@@ -299,7 +296,7 @@ var game = {
                 <img src="${img}"/>
                 <p>${name}</p>
             </div
-            `
+            `;
         }
     },
 
@@ -384,12 +381,12 @@ var game = {
                 user.money -= this.cost[i];
                 this.amount[i] += 1;
                 this.cost[i] = Math.floor(this.cost[i] * 1.25);
-                game.display.spawnBuildings()
-                game.display.clickerContainer()
+                game.display.spawnBuildings();
+                game.display.clickerContainer();
                 user.moneyPerSecond += this.income[i];
-                game.display.displayBuildings()
-                game.display.displayUpgrade()
-                this.checkPrice()
+                game.display.displayBuildings();
+                game.display.displayUpgrade();
+                this.checkPrice();
             }
         },
 
@@ -397,11 +394,19 @@ var game = {
             for (i=0; i<this.title.length; i++){
                 if (this.owned[i] == true){
                     if(user.money >= this.cost[i]){
-                        getElement(this.id[i]).style.borderColor = "black"
+                        getElement(this.id[i]).style.borderColor = "black";
                     }
                     else{
-                        getElement(this.id[i]).style.borderColor = "grey"
+                        getElement(this.id[i]).style.borderColor = "grey";
                     }
+                }
+            }
+        },
+
+        checkOwned: function() {
+            for(i=0; i<this.title.length; i++){
+                if(user.money >= game.buildings.need[i] && game.buildings.owned[i] == false){
+                    game.buildings.owned[i] = true;
                 }
             }
         }
@@ -477,22 +482,22 @@ var game = {
                 if (this.type[i] == 0){
                     user.money -= this.cost[i];
                     this.owned[i] = true;
-                    game.buildings.income[this.i[i]] += game.buildings.income[this.i[i]] * this.outcome[i]
-                    game.display.clickerContainer()
-                    game.display.displayBuildings()
-                    game.display.displayUpgrade()
-                    game.display.spawnBuildings()
-                    game.buildings.checkPrice()
+                    game.buildings.income[this.i[i]] += game.buildings.income[this.i[i]] * this.outcome[i];
+                    game.display.clickerContainer();
+                    game.display.displayBuildings();
+                    game.display.displayUpgrade();
+                    game.display.spawnBuildings();
+                    game.buildings.checkPrice();
                 }
                 if (this.type[i] == 1){
                     user.money -= this.cost[i];
                     this.owned[i] = true;
-                    user.moneyPerClick = this.outcome[i] * user.moneyPerClick
-                    game.display.clickerContainer()
-                    game.display.displayBuildings()
-                    game.display.displayUpgrade()
-                    game.display.spawnBuildings()
-                    game.buildings.checkPrice()
+                    user.moneyPerClick = this.outcome[i] * user.moneyPerClick;
+                    game.display.clickerContainer();
+                    game.display.displayBuildings();
+                    game.display.displayUpgrade();
+                    game.display.spawnBuildings();
+                    game.buildings.checkPrice();
                 }
             }
             
@@ -529,8 +534,8 @@ var game = {
                 if(this.owned[i] == false){
                     if(this.type[i] == 0){
                         if(this.whatNeeded[i] <= user.totalClicks){
-                            game.display.displayAchievement(this.name[i], this.description[i], this.img[i], i)
-                            this.owned[i] = true
+                            game.display.displayAchievement(this.name[i], this.description[i], this.img[i], i);
+                            this.owned[i] = true;
                         }
                     }
                 }
@@ -559,50 +564,50 @@ var game = {
                 upgradeOwned: game.upgrades.owned,
                 achievementOwned: game.achievements.owned
             }
-            localStorage.setItem("gameSave", JSON.stringify(gameSave))
+            localStorage.setItem("gameSave", JSON.stringify(gameSave));
         },
 
         loadGame: function(){
             var savedGame = JSON.parse(localStorage.getItem("gameSave"))
             if (localStorage.getItem("gameSave") !== null){
-                if (typeof savedGame.money !== "undefined") user.money = savedGame.money
-                if (typeof savedGame.moneyPerClick !== "undefined") user.moneyPerClick = savedGame.moneyPerClick
-                if (typeof savedGame.totalClicks !== "undefined") user.totalClicks = savedGame.totalClicks
-                if (typeof savedGame.totalMoney !== "undefined") user.totalMoney = savedGame.totalMoney
-                if (typeof savedGame.moneyPerSecond !== "undefined") user.moneyPerSecond = savedGame.moneyPerSecond
+                if (typeof savedGame.money !== "undefined") user.money = savedGame.money;
+                if (typeof savedGame.moneyPerClick !== "undefined") user.moneyPerClick = savedGame.moneyPerClick;
+                if (typeof savedGame.totalClicks !== "undefined") user.totalClicks = savedGame.totalClicks;
+                if (typeof savedGame.totalMoney !== "undefined") user.totalMoney = savedGame.totalMoney;
+                if (typeof savedGame.moneyPerSecond !== "undefined") user.moneyPerSecond = savedGame.moneyPerSecond;
                 if (typeof savedGame.buildingCost !== "undefined"){
                     for (i=0; i<savedGame.buildingCost.length; i++){
-                        game.buildings.cost[i] = savedGame.buildingCost[i]
+                        game.buildings.cost[i] = savedGame.buildingCost[i];
                     }
                 }
                 if (typeof savedGame.buildingAmount !== "undefined"){
                     for (i=0; i<savedGame.buildingAmount.length; i++){
-                        game.buildings.amount[i] = savedGame.buildingAmount[i]
+                        game.buildings.amount[i] = savedGame.buildingAmount[i];
                     }
                 }
                 if (typeof savedGame.buildingIncome !== "undefined"){
                     for (i=0; i<savedGame.buildingIncome.length; i++){
-                        game.buildings.income[i] = savedGame.buildingIncome[i]
+                        game.buildings.income[i] = savedGame.buildingIncome[i];
                     }
                 }
                 if (typeof savedGame.buildingOwned !== "undefined"){
                     for (i=0; i<savedGame.buildingOwned.length; i++){
-                        game.buildings.owned[i] = savedGame.buildingOwned[i]
+                        game.buildings.owned[i] = savedGame.buildingOwned[i];
                     }
                 }
                 if (typeof savedGame.buidlingSpawned !== "undefined"){
                     for (i=0; i<savedGame.buidlingSpawned.length; i++){
-                        game.buildings.spawned[i] = savedGame.buidlingSpawned[i]
+                        game.buildings.spawned[i] = savedGame.buidlingSpawned[i];
                     }
                 }
                 if (typeof savedGame.upgradeOwned !== "undefined"){
                     for (i=0; i<savedGame.upgradeOwned.length; i++){
-                        game.upgrades.owned[i] = savedGame.upgradeOwned[i]
+                        game.upgrades.owned[i] = savedGame.upgradeOwned[i];
                     }
                 }
                 if (typeof savedGame.achievementOwned !== "undefined"){
                     for (i=0; i<savedGame.achievementOwned.length; i++){
-                        game.achievements.owned[i] = savedGame.achievementOwned[i]
+                        game.achievements.owned[i] = savedGame.achievementOwned[i];
                     }
                 }
             }
@@ -611,28 +616,31 @@ var game = {
         resetGame: function(){
             if (confirm("Are you sure you want to reset your game?")){
                 var gameSave = {};
-                localStorage.setItem("gameSave", JSON.stringify(gameSave))
+                localStorage.setItem("gameSave", JSON.stringify(gameSave));
                 location.reload();
             }
         }
     },
 
     addMoneyPerSecond: function(){
-        user.money += user.moneyPerSecond
+        user.money += user.moneyPerSecond;
+        user.totalMoney += user.moneyPerSecond
     }
 }
 
 // Event Listners
 getElement("clickContainer").addEventListener('click', function(event){
     game.inputs.click();
-    game.display.addClickNumber(event)
-    game.display.displayUpgrade()
-    game.buildings.checkPrice()
+    game.display.addClickNumber(event);
+    game.display.displayUpgrade();
+    game.buildings.checkPrice();
+    game.achievements.achieve();
+    game.buildings.checkOwned();
 }, false);
 
 getElement("statsButton").addEventListener("mouseover", () => {
     getElement("statContainer").style.visibility = "visible";
-    game.display.updateStats()
+    game.display.updateStats();
 })
 
 getElement("statsButton").addEventListener("mouseout", () => {
@@ -646,29 +654,30 @@ getElement("aboutButton").addEventListener("mouseover", () => {
 getElement("aboutButton").addEventListener("mouseout", () => {
     getElement("aboutContainer").style.visibility = "hidden";
 })
-getElement("resetButton").addEventListener("click", game.save.resetGame)
+getElement("resetButton").addEventListener("click", game.save.resetGame);
 
 
 
 // tick
 var tick = setInterval(() => {
-    game.display.clickerContainer()
-    game.display.spawnBuildings()
-    game.addMoneyPerSecond()
-    game.display.displayUpgrade()
-    game.display.updateStats()
-    game.achievements.achieve()
-    game.buildings.checkPrice()
+    game.display.clickerContainer();
+    game.display.spawnBuildings();
+    game.addMoneyPerSecond();
+    game.display.displayUpgrade();
+    game.display.updateStats();
+    game.achievements.achieve();
+    game.buildings.checkPrice();
+    game.buildings.checkOwned();
 }, 1000)
 
 var tick30 = setInterval(() => {
-    game.save.saveGame()
+    game.save.saveGame();
 }, 30000)
 
 window.onload = () =>{
-    tick
-    game.save.loadGame()
-    game.display.displayBuildings()
-    game.save.saveGame()
+    tick;
+    game.save.loadGame();
+    game.display.displayBuildings();
+    game.save.saveGame();
 }
 
