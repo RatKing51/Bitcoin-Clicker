@@ -183,7 +183,8 @@
     border-radius: 10px;
     color: black;
     transition: .2s ease-in;
-    border: 5px solid black;
+    border: 5px solid grey;
+    opacity: 1;
 }
 
 .shop-card:hover{

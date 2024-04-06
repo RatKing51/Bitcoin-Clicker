@@ -7,7 +7,7 @@ Stack Overflow
 function getElement(element) {return document.getElementById(element)}
 
 var user = {
-    money: 100000,
+    money: 0,
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0,
@@ -20,6 +20,7 @@ var game = {
             user.money += user.moneyPerClick;
             user.totalClicks++;
             user.totalMoney++;
+            getElement("money").textContent = Math.floor(user.money);
         }
     },
 
@@ -37,6 +38,21 @@ var game = {
                 opacity -= 50 / duration;
 
                 if (opacity <= finalOpacity){
+                    clearInterval(elementFadingInterval);
+                    callback();
+                }
+
+                element.style.opacity = opacity;
+            })
+        },
+
+        fadeIn: function(element, duration, finalOpacity, callback){
+            let opacity = 0;
+
+            let elementFadingInterval = window.setInterval(function() {
+                opacity += 50 / duration;
+
+                if (opacity >= finalOpacity){
                     clearInterval(elementFadingInterval);
                     callback();
                 }
@@ -78,16 +94,28 @@ var game = {
             var shopContainer = getElement("shopContainer");
             shopContainer.innerHTML = ""
             for(i=0; i<game.buildings.title.length; i++){
-                shopContainer.innerHTML += `
-                <div class="shop-card" id="shopCard" title="${game.buildings.description[i]}, Income: ${game.buildings.income[i]}" onclick="game.buildings.purchase(${i})">
-                    <img src="${game.buildings.img[i]}">
-                    <div class="shop-info-container">
-                        <h1>${game.buildings.title[i]}</h1>
-                        <h2>Cost: ${game.buildings.cost[i]}</h2>
+                if(user.money >= game.buildings.need[i] && game.buildings.owned[i] == false){
+                    game.buildings.owned[i] = true
+                }
+                if (game.buildings.owned[i] == true){
+                    shopContainer.innerHTML += `
+                    <div class="shop-card" id="${game.buildings.id[i]}" title="${game.buildings.description[i]}, Income: ${game.buildings.income[i]}" onclick="game.buildings.purchase(${i})">
+                        <img src="${game.buildings.img[i]}">
+                        <div class="shop-info-container">
+                            <h1>${game.buildings.title[i]}</h1>
+                            <h2>Cost: ${game.buildings.cost[i]}</h2>
+                        </div>
+                        <h1>${game.buildings.amount[i]}</h1>
                     </div>
-                    <h1>${game.buildings.amount[i]}</h1>
-                </div>
                 `
+                    /*if (!game.buildings.spawned[i]){
+                        this.fadeIn(getElement(game.buildings.id[i]), 2, 1, function(){
+                            game.buildings.spawned[i] = true
+                        })
+                    }
+                    */
+                    
+                }
             }
         },
 
@@ -319,6 +347,38 @@ var game = {
             "./imgs/better-desk.jpeg",
         ],
 
+        id: [
+            "humanId",
+            "slowComputerId",
+            "betterKeyboardId",
+            "betterMouseId",
+            "betterDeskId"
+        ],
+
+        owned: [
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+
+        need: [
+            1,
+            250,
+            500,
+            750,
+            1000
+        ],
+
+        spawned: [
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+
         purchase: function(i){
             if (user.money >= this.cost[i]){
                 user.money -= this.cost[i];
@@ -329,6 +389,20 @@ var game = {
                 user.moneyPerSecond += this.income[i];
                 game.display.displayBuildings()
                 game.display.displayUpgrade()
+                this.checkPrice()
+            }
+        },
+
+        checkPrice: function(){
+            for (i=0; i<this.title.length; i++){
+                if (this.owned[i] == true){
+                    if(user.money >= this.cost[i]){
+                        getElement(this.id[i]).style.borderColor = "black"
+                    }
+                    else{
+                        getElement(this.id[i]).style.borderColor = "grey"
+                    }
+                }
             }
         }
     },
@@ -339,14 +413,14 @@ var game = {
             "More Clicker",
             "Beter Keycaps",
             "More Ram",
-            "Faster DPI",
-            ""
+            "Faster DPI"
         ],
         cost: [
             1500,
             1500,
             5000,
-            3500
+            3500,
+            5500
         ],
         description: [
             "This will doubles your workers income!!",
@@ -408,6 +482,7 @@ var game = {
                     game.display.displayBuildings()
                     game.display.displayUpgrade()
                     game.display.spawnBuildings()
+                    game.buildings.checkPrice()
                 }
                 if (this.type[i] == 1){
                     user.money -= this.cost[i];
@@ -417,6 +492,7 @@ var game = {
                     game.display.displayBuildings()
                     game.display.displayUpgrade()
                     game.display.spawnBuildings()
+                    game.buildings.checkPrice()
                 }
             }
             
@@ -478,6 +554,8 @@ var game = {
                 buildingCost: game.buildings.cost,
                 buildingAmount: game.buildings.amount,
                 buildingIncome: game.buildings.income,
+                buildingOwned:game.buildings.owned,
+                buidlingSpawned: game.buildings.spawned,
                 upgradeOwned: game.upgrades.owned,
                 achievementOwned: game.achievements.owned
             }
@@ -497,14 +575,24 @@ var game = {
                         game.buildings.cost[i] = savedGame.buildingCost[i]
                     }
                 }
-                if (typeof savedGame.buildingAmount.length !== "undefined"){
+                if (typeof savedGame.buildingAmount !== "undefined"){
                     for (i=0; i<savedGame.buildingAmount.length; i++){
                         game.buildings.amount[i] = savedGame.buildingAmount[i]
                     }
                 }
-                if (typeof savedGame.buildingIncome.length !== "undefined"){
+                if (typeof savedGame.buildingIncome !== "undefined"){
                     for (i=0; i<savedGame.buildingIncome.length; i++){
                         game.buildings.income[i] = savedGame.buildingIncome[i]
+                    }
+                }
+                if (typeof savedGame.buildingOwned !== "undefined"){
+                    for (i=0; i<savedGame.buildingOwned.length; i++){
+                        game.buildings.owned[i] = savedGame.buildingOwned[i]
+                    }
+                }
+                if (typeof savedGame.buidlingSpawned !== "undefined"){
+                    for (i=0; i<savedGame.buidlingSpawned.length; i++){
+                        game.buildings.spawned[i] = savedGame.buidlingSpawned[i]
                     }
                 }
                 if (typeof savedGame.upgradeOwned !== "undefined"){
@@ -538,9 +626,8 @@ var game = {
 getElement("clickContainer").addEventListener('click', function(event){
     game.inputs.click();
     game.display.addClickNumber(event)
-    game.display.clickerContainer()
     game.display.displayUpgrade()
-    getElement("moneyPerSecond").textContent = Math.floor(user.moneyPerSecond);
+    game.buildings.checkPrice()
 }, false);
 
 getElement("statsButton").addEventListener("mouseover", () => {
@@ -571,6 +658,7 @@ var tick = setInterval(() => {
     game.display.displayUpgrade()
     game.display.updateStats()
     game.achievements.achieve()
+    game.buildings.checkPrice()
 }, 1000)
 
 var tick30 = setInterval(() => {
