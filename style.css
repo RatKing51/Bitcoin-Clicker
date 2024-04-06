@@ -102,6 +102,11 @@
     background-color: #7798AB;
 }
 
+.info-button-container{
+    display: flex;
+    flex-direction: row;
+}
+
 .buildings-containers{ 
     background-color: #141e20;
     height: 85%;
@@ -109,7 +114,7 @@
 }
 
 .info-button{
-    width: 10rem;
+    width: 9rem;
     height: 2rem;
     border: none;
     font-weight: 600;

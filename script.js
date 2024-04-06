@@ -7,7 +7,7 @@ Stack Overflow
 function getElement(element) {return document.getElementById(element)}
 
 var user = {
-    money: 0,
+    money: 100000,
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0,
@@ -19,7 +19,6 @@ var game = {
         click: function(){
             user.money += user.moneyPerClick;
             user.totalClicks++;
-            game.display.clickerContainer()
         }
     },
 
@@ -28,36 +27,6 @@ var game = {
         clickerContainer: function(){
             getElement("money").textContent = Math.floor(user.money);
             getElement("moneyPerSecond").textContent = Math.floor(user.moneyPerSecond);
-            if (user.moneyPerSecond == 0.1){
-                getElement("moneyPerSecond").textContent = "0.1";
-            }
-            if (user.moneyPerSecond == 0.2){
-                getElement("moneyPerSecond").textContent = "0.2";
-            }
-            if (user.moneyPerSecond == 0.3){
-                getElement("moneyPerSecond").textContent = "0.3";
-            }
-            if (user.moneyPerSecond == 0.4){
-                getElement("moneyPerSecond").textContent = "0.4";
-            }
-            if (user.moneyPerSecond == 0.5){
-                getElement("moneyPerSecond").textContent = "0.5";
-            }
-            if (user.moneyPerSecond == 0.6){
-                getElement("moneyPerSecond").textContent = "0.6";
-            }
-            if (user.moneyPerSecond == 0.7){
-                getElement("moneyPerSecond").textContent = "0.7";
-            }
-            if (user.moneyPerSecond == 0.8){
-                getElement("moneyPerSecond").textContent = "0.8";
-            }
-            if (user.moneyPerSecond == 0.9){
-                getElement("moneyPerSecond").textContent = "0.9";
-            }
-            if (user.moneyPerSecond == 1){
-                getElement("moneyPerSecond").textContent = "1";
-            }
         },
 
         fadeOut: function(element, duration, finalOpacity, callback){
@@ -297,7 +266,7 @@ var game = {
         displayAchievement: function(name, description, img, i){
             var container = getElement("achievementContainer");
             container.innerHTML += `
-            <div class="achievement-card" id="achievementCard${i}" title="${description}" onclick="removeAchievement(${i})>
+            <div class="achievement-card" id="achievementCard${i}" title="${description}" onclick="game.achievements.removeAchievement(${i})">
                 <img src="${img}"/>
                 <p>${name}</p>
             </div
@@ -325,7 +294,7 @@ var game = {
             1,
             3,
             5,
-            10
+            10,
         ],
         amount: [
             0,
@@ -346,13 +315,12 @@ var game = {
             "./imgs/old-computer.png",
             "./imgs/better-keyboard.jpeg",
             "./imgs/better-mouse.jpeg",
-            "./imgs/better-desk.jpeg"
+            "./imgs/better-desk.jpeg",
         ],
 
         purchase: function(i){
             if (user.money >= this.cost[i]){
                 user.money -= this.cost[i];
-                user.totalMoney -= this.cost[i];
                 this.amount[i] += 1;
                 this.cost[i] = Math.floor(this.cost[i] * 1.25);
                 game.display.spawnBuildings()
@@ -569,7 +537,9 @@ var game = {
 getElement("clickContainer").addEventListener('click', function(event){
     game.inputs.click();
     game.display.addClickNumber(event)
+    game.display.clickerContainer()
     game.display.displayUpgrade()
+    getElement("moneyPerSecond").textContent = Math.floor(user.moneyPerSecond);
 }, false);
 
 getElement("statsButton").addEventListener("mouseover", () => {
@@ -588,6 +558,7 @@ getElement("aboutButton").addEventListener("mouseover", () => {
 getElement("aboutButton").addEventListener("mouseout", () => {
     getElement("aboutContainer").style.visibility = "hidden";
 })
+getElement("resetButton").addEventListener("click", game.save.resetGame)
 
 
 
