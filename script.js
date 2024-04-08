@@ -297,6 +297,24 @@ var game = {
                 <p>${name}</p>
             </div
             `;
+        },
+
+        clickerBackground: function(){
+            var milestones = [
+                10,
+                50,
+                100
+            ];
+            var colors = [
+                "linear-gradient(180deg, #3d0ced 0%, #ffffff 100%)",
+                "linear-gradient(180deg, #bded0c 0%, #ffffff 100%)",
+                "linear-gradient(180deg, #ede60c 0%, #ffffff 100%)"
+            ];
+            for (i=0; i<milestones.length; i++){
+                if(user.moneyPerSecond >= milestones[i]){
+                    getElement("leftContainer").style.background = colors[i];
+                }
+            }
         }
     },
 
@@ -506,27 +524,38 @@ var game = {
 
     achievements: {
         name: [
-            "One Starts All"
+            "One Starts All",
+            //"Big Bucks"
         ],
 
         description: [
-            "You Clicked the Bitcoin"
+            "You Clicked the Bitcoin",
+            //"100 Clicks!!"
         ],
         // 0 click 1 building
         type: [
-            0       
+            0,
+            //0
         ],
 
         whatNeeded: [
-            1
+            1,
+            //10
         ],
 
         owned: [
-            false
+            false,
+            //false
         ],
 
         img: [
-            "./imgs/cursor.webp"
+            "./imgs/cursor.webp",
+            //"./imgs/cursor.webp"
+        ],
+
+        index: [
+            false,
+            //false
         ],
 
         achieve: function(){
@@ -668,6 +697,7 @@ var tick = setInterval(() => {
     game.achievements.achieve();
     game.buildings.checkPrice();
     game.buildings.checkOwned();
+    game.display.clickerBackground()
 }, 1000)
 
 var tick30 = setInterval(() => {

@@ -114,8 +114,8 @@
 }
 
 .info-button{
-    width: 9rem;
-    height: 2rem;
+    width: 100%;
+    height: 100%;
     border: none;
     font-weight: 600;
     border-radius: 10px;
@@ -154,8 +154,8 @@
 }
 
 .upgrade-img{
-    width: 64px;
-    height: 64px;
+    width: 18%;
+    height: 75%;
     border: 5px solid black;
     border-radius: 10px;
     transition: .1s ease-in;
@@ -192,8 +192,8 @@
 }
 
 .shop-card img{
-    width: 64px;
-    height: 64px;
+    width: 20%;
+    height: 90%;
     border-radius: 10px;
 }
 
@@ -201,7 +201,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-size: 10px;
+    font-size: 60%;
 }
 
 .building-display-container{
@@ -217,8 +217,8 @@
 }
 
 .building-display-img {
-    width: 64px;
-    height: 64px;
+    width: 12.5%;
+    height: 60%;
     position: absolute;
     border: 3.5px solid grey;
     border-radius: 10px;
@@ -266,6 +266,8 @@
     width: 20%;
     height: 10%;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .achievement-card{
@@ -283,4 +285,10 @@
 
 .achievement-card img{
     size: 50%;
+}
+
+.button-info-container{
+    display: flex;
+    width: 100%;
+    height: 30%;
 }
