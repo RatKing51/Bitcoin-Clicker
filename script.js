@@ -436,28 +436,36 @@ var game = {
             "More Clicker",
             "Beter Keycaps",
             "More Ram",
-            "Faster DPI"
+            "Faster DPI",
+            "Even More Clicker",
+            "FAST CLICKER"
         ],
         cost: [
             1500,
             1500,
             5000,
             3500,
-            5500
+            5500,
+            2000,
+            2500
         ],
         description: [
-            "This will doubles your workers income!!",
+            "This will double your workers income!!",
             "This will double your cursors income",
             "This will double your better keyboard income.",
             "This will double your old computer income.",
-            "This will double your better mouse income."
+            "This will double your better mouse income.",
+            "This will double your cursors income",
+            "This will double your cursors income"
         ],
         img: [
             "./imgs/human-image.png",
             "./imgs/cursor.webp",
             "./imgs/better-keyboard.jpeg",
             "./imgs/old-computer.png",
-            "./imgs/better-mouse.jpeg"
+            "./imgs/better-mouse.jpeg",
+            "./imgs/cursor.webp",
+            "./imgs/cursor.webp"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -465,9 +473,13 @@ var game = {
             1,
             0,
             0,
-            0
+            0,
+            1,
+            1
         ],
         outcome: [
+            2,
+            2,
             2,
             2,
             2,
@@ -479,9 +491,13 @@ var game = {
             1,
             1,
             1,
-            1
+            1,
+            10,
+            50
         ],
         owned: [
+            false,
+            false,
             false,
             false,
             false,
@@ -493,7 +509,9 @@ var game = {
             false,
             2,
             1,
-            3
+            3,
+            false,
+            false
         ],
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
