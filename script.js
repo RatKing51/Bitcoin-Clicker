@@ -85,7 +85,7 @@ var game = {
                 element.style.top = position.y + "px";
            }, 10);
 
-           this.fadeOut(element, 10000, 0.5, function(){
+           this.fadeOut(element, 20000, 0.5, function(){
                 element.remove();
            })
         },
@@ -327,11 +327,11 @@ var game = {
             "Better Desk"
         ],
         cost: [
-            150,
-            500,
-            1350,
-            4000,
-            7000
+            100,
+            300,
+            1250,
+            3000,
+            5500
         ],
         income: [
             0.5,
@@ -438,16 +438,30 @@ var game = {
             "More Ram",
             "Faster DPI",
             "Even More Clicker",
-            "FAST CLICKER"
+            "FAST CLICKER",
+            "Pay Raise for the workers",
+            "Faster Switches",
+            "DDR3 Ram",
+            "Bluetooth Mouse",
+            "Better Drawers",
+            "Orginzation Style",
+            "1,000 Clicks"
         ],
         cost: [
             1500,
             1500,
-            5000,
+            3500,
             3500,
             5500,
             2000,
-            2500
+            3500,
+            3500,
+            5000,
+            5000,
+            5000,
+            2500,
+            7000,
+            6000
         ],
         description: [
             "This will double your workers income!!",
@@ -456,6 +470,13 @@ var game = {
             "This will double your old computer income.",
             "This will double your better mouse income.",
             "This will double your cursors income",
+            "This will double your cursors income",
+            "This will double your workers income!!",
+            "This will double your better keyboard income.",
+            "This will double your old computer income.",
+            'This will double you better mouse income.',
+            "This will double your better desk income.",
+            "This will double your better desk income.",
             "This will double your cursors income"
         ],
         img: [
@@ -465,6 +486,13 @@ var game = {
             "./imgs/old-computer.png",
             "./imgs/better-mouse.jpeg",
             "./imgs/cursor.webp",
+            "./imgs/cursor.webp",
+            "./imgs/human-image.png",
+            "./imgs/better-keyboard.jpeg",
+            "./imgs/old-computer.png",
+            "./imgs/better-mouse.jpeg",
+            "./imgs/better-desk.jpeg",
+            "./imgs/better-desk.jpeg",
             "./imgs/cursor.webp"
         ],
         // 0 = building 1 = clicker 2 = click add
@@ -475,9 +503,23 @@ var game = {
             0,
             0,
             1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1
         ],
         outcome: [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
             2,
             2,
             2,
@@ -493,9 +535,23 @@ var game = {
             1,
             1,
             10,
-            50
+            50,
+            5,
+            5,
+            5,
+            5,
+            1,
+            5,
+            1000
         ],
         owned: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -511,6 +567,13 @@ var game = {
             1,
             3,
             false,
+            false,
+            0,
+            2,
+            1,
+            3,
+            4,
+            4,
             false
         ],
         purchase: function(i) {
