@@ -11,13 +11,14 @@ function numberWithCommas(x) {
 }
 
 function addName(number){
-    if(number >= 100){
+
+    if(number >= 100 && number <= 1000){
         return("Hundred")
     }
-    if(number >= 1000){
+    if(number >= 1000 && number <= 1000000){
         return("Thousand")
     }
-    if(number >= 1000000){
+    if(number >= 1000000 && number <= 100000000){
         return("Million")
     }
     if(number >= 100000000){
