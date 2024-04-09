@@ -292,3 +292,12 @@
     width: 100%;
     height: 30%;
 }
+
+#moneyName{
+    font-size: 0.5rem
+}
+
+#buildingName{
+    font-size: 0.5rem;
+}
+

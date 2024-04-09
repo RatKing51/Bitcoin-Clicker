@@ -6,6 +6,25 @@ Stack Overflow
 
 function getElement(element) {return document.getElementById(element)};
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function addName(number){
+    if(number >= 100){
+        return("Hundred")
+    }
+    if(number >= 1000){
+        return("Thousand")
+    }
+    if(number >= 1000000){
+        return("Million")
+    }
+    if(number >= 100000000){
+        return("Billion")
+    }
+}
+
 var user = {
     money: 0,
     moneyPerClick: 1,
@@ -20,15 +39,17 @@ var game = {
             user.money += user.moneyPerClick;
             user.totalClicks++;
             user.totalMoney++;
-            getElement("money").textContent = Math.floor(user.money);
+            getElement("money").textContent = numberWithCommas(user.money)
         }
     },
 
 
     display: {
         clickerContainer: function(){
-            getElement("money").textContent = Math.floor(user.money);
-            getElement("moneyPerSecond").textContent = Math.floor(user.moneyPerSecond);
+            getElement("money").textContent = numberWithCommas(user.money)
+            getElement("moneyName").textContent = addName(user.money)
+            getElement("moneyPerSecond").textContent = numberWithCommas(user.moneyPerSecond)
+            getElement("mpsName").textContent = addName(user.moneyPerSecond)
         },
 
         fadeOut: function(element, duration, finalOpacity, callback){
@@ -71,7 +92,7 @@ var game = {
            };
 
            let element = document.createElement("div");
-           element.textContent = "+" + user.moneyPerClick;
+           element.textContent = "+" + numberWithCommas(user.moneyPerClick);
            element.classList.add("number");
            element.style.left = position.x + "px";
            element.style.top = position.y  + "px";
@@ -85,7 +106,7 @@ var game = {
                 element.style.top = position.y + "px";
            }, 10);
 
-           this.fadeOut(element, 20000, 0.5, function(){
+           this.fadeOut(element, 12000, 0.5, function(){
                 element.remove();
            })
         },
@@ -96,13 +117,13 @@ var game = {
             for(i=0; i<game.buildings.title.length; i++){
                 if (game.buildings.owned[i] == true){
                     shopContainer.innerHTML += `
-                    <div class="shop-card" id="${game.buildings.id[i]}" title="${game.buildings.description[i]}, Income: ${game.buildings.income[i]}" onclick="game.buildings.purchase(${i})">
+                    <div class="shop-card" id="${game.buildings.id[i]}" title="${game.buildings.description[i]}, Income: ${numberWithCommas(game.buildings.income[i])}" onclick="game.buildings.purchase(${i})">
                         <img src="${game.buildings.img[i]}">
                         <div class="shop-info-container">
                             <h1>${game.buildings.title[i]}</h1>
-                            <h2>Cost: ${game.buildings.cost[i]}</h2>
+                            <h2>Cost: ${numberWithCommas(game.buildings.cost[i])} <span id="buildingName">${addName(game.buildings.cost[i])}</span></h2>
                         </div>
-                        <h1>${game.buildings.amount[i]}</h1>
+                        <h1>${numberWithCommas(game.buildings.amount[i])}</h1>
                     </div>
                 `;
                     /*if (!game.buildings.spawned[i]){
@@ -260,14 +281,14 @@ var game = {
                         if(game.upgrades.need[i] <= game.buildings.amount[game.upgrades.i[i]]){
                             
                             container.innerHTML += `
-                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
+                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${numberWithCommas(game.upgrades.cost[i])}" onclick="game.upgrades.purchase(${i})"/>
                             `;
                         }
                     }
                     if (game.upgrades.type[i] == 1){
                         if(game.upgrades.need[i] <= user.totalClicks){
                             container.innerHTML += `
-                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${game.upgrades.cost[i]}" onclick="game.upgrades.purchase(${i})"/>
+                            <img class="upgrade-img" src="${game.upgrades.img[i]}" title="${game.upgrades.title[i]}. ${game.upgrades.description[i]}. Cost:${numberWithCommas(game.upgrades.cost[i])}" onclick="game.upgrades.purchase(${i})"/>
                             `;
                         }
                     }
@@ -282,10 +303,10 @@ var game = {
             var totalMoneyElement = getElement("totalMoney");
             var totalClicksElement = getElement("totalClicks");
             var moneyPerClickElement = getElement("moneyPerClick");
-            mpsElement.textContent = user.moneyPerSecond
-            totalMoneyElement.textContent = user.totalMoney;
-            totalClicksElement.textContent = user.totalClicks;
-            moneyPerClickElement.textContent = user.moneyPerClick;
+            mpsElement.textContent = numberWithCommas(user.moneyPerSecond);
+            totalMoneyElement.textContent = numberWithCommas(user.totalMoney);
+            totalClicksElement.textContent = numberWithCommas(user.totalClicks);
+            moneyPerClickElement.textContent = numberWithCommas(user.moneyPerClick);
 
         },
 
@@ -400,8 +421,8 @@ var game = {
                 this.amount[i] += 1;
                 this.cost[i] = Math.floor(this.cost[i] * 1.25);
                 game.display.spawnBuildings();
-                game.display.clickerContainer();
                 user.moneyPerSecond += this.income[i];
+                game.display.clickerContainer();
                 game.display.displayBuildings();
                 game.display.displayUpgrade();
                 this.checkPrice();
