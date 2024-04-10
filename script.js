@@ -107,7 +107,7 @@ var game = {
                 element.style.top = position.y + "px";
            }, 10);
 
-           this.fadeOut(element, 12000, 0.5, function(){
+           this.fadeOut(element, 11000, 0.5, function(){
                 element.remove();
            })
         },
@@ -402,10 +402,10 @@ var game = {
 
         need: [
             1,
-            250,
             500,
             750,
-            1000
+            1500,
+            5000
         ],
 
         spawned: [
@@ -556,8 +556,8 @@ var game = {
             1,
             1,
             1,
-            10,
-            50,
+            100,
+            500,
             5,
             5,
             5,
@@ -763,7 +763,10 @@ var game = {
 // Event Listners
 getElement("clickContainer").addEventListener('click', function(event){
     game.inputs.click();
-    game.display.addClickNumber(event);
+    var check = Math.random()
+    if (check >= 0.2){
+        game.display.addClickNumber(event);
+    }
     game.display.displayUpgrade();
     game.buildings.checkPrice();
     game.achievements.achieve();
