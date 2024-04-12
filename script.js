@@ -21,6 +21,9 @@ function addName(number){
     if(number >= 100000000){
         return("Billion")
     }
+    else{
+        return("")
+    }
 }
 
 var user = {
@@ -141,6 +144,7 @@ var game = {
             var betterKeyboardContainer = getElement("betterKeyboardContainer");
             var betterMouseContainer = getElement("betterMouseContainer");
             var betterDeskContainer = getElement("betterDeskContainer");
+            var garageContainer = getElement("garageContainer")
             if (game.buildings.amount[0] <= 0){
                 humanContainer.style.visibility = "hidden";
             }
@@ -266,6 +270,31 @@ var game = {
                     betterDeskContainer.appendChild(element);
                 }
             }
+            if (game.buildings.amount[5] <= 0){
+                garageContainer.style.visibility = "hidden";
+            }
+            if (game.buildings.amount[5] > 0){
+                garageContainer.style.visibility = "visible";
+                garageContainer.innerHTML = ""
+                for(i=0; i<game.buildings.amount[5]; i++){
+                    let element = document.createElement("img");
+                    element.src = game.buildings.img[5];
+                    element.classList.add("building-display-img");
+                    let left;
+                    if(i == 0){
+                        left = 0;
+                    }
+                    else{
+                        left = (i * 100) - 75;
+                    }
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
+                    
+
+                    garageContainer.appendChild(element);
+                }
+            }
             
             
         },
@@ -343,14 +372,16 @@ var game = {
             "Slow Computer",
             "Better Keyboard",
             "Better Mouse",
-            "Better Desk"
+            "Better Desk",
+            "Garage"
         ],
         cost: [
             100,
             300,
             1250,
             3000,
-            5500
+            5500,
+            7000
         ],
         income: [
             0.5,
@@ -358,8 +389,10 @@ var game = {
             3,
             5,
             10,
+            15
         ],
         amount: [
+            0,
             0,
             0,
             0,
@@ -371,7 +404,8 @@ var game = {
             "This mines crypto but it sucks like crap",
             "Keyboard to get type crypto faster.",
             "You can click faster for more crypto",
-            "This gives you more desk space for more monitors."
+            "This gives you more desk space for more monitors.",
+            "More space for more crypto minors."
         ],
         img: [
             "./imgs/human-image.png",
@@ -379,6 +413,7 @@ var game = {
             "./imgs/better-keyboard.jpeg",
             "./imgs/better-mouse.jpeg",
             "./imgs/better-desk.jpeg",
+            "./imgs/garage.jpg"
         ],
 
         id: [
@@ -386,10 +421,12 @@ var game = {
             "slowComputerId",
             "betterKeyboardId",
             "betterMouseId",
-            "betterDeskId"
+            "betterDeskId",
+            "garageId"
         ],
 
         owned: [
+            false,
             false,
             false,
             false,
@@ -402,10 +439,12 @@ var game = {
             500,
             750,
             1500,
-            5000
+            5000,
+            7000
         ],
 
         spawned: [
+            false,
             false,
             false,
             false,

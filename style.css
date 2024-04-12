@@ -16,6 +16,7 @@
     height: 100vh;
     display: flex;
     background-color: #7798AB;
+    overflow-y: hidden;
 }
 
 #clickerImage{
@@ -138,6 +139,7 @@
     width: 30%;
     border: 5px solid black;
     border-left: none;
+    overflow-y: scroll;
 }
 
 .upgrades-container{
@@ -164,11 +166,11 @@
 .upgrade-img:hover{border-color: #141e20; transform: rotate(5deg);}
 
 .shop-container{
-    overflow-y: scroll;
-    height: 83%;
+    height: 87%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .shop-card{
