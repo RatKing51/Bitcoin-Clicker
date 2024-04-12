@@ -12,9 +12,6 @@ function numberWithCommas(x) {
 
 function addName(number){
 
-    if(number >= 100 && number <= 1000){
-        return("Hundred")
-    }
     if(number >= 1000 && number <= 1000000){
         return("Thousand")
     }
@@ -31,7 +28,7 @@ var user = {
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0,
-    totalClicks: 10000
+    totalClicks: 0
 }
 
 var game = {
