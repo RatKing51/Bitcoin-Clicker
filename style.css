@@ -28,10 +28,11 @@
 .left-container{
     width: 30%;
     border: 5px solid black;
+    background-image: url(./imgs/background-panel3.png);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #7798AB;
+    /*background-color: #7798AB;*/
 }
 
 .clicker-container{
@@ -44,6 +45,7 @@
 
 .click-container{
     background-image: url("./imgs/Bitcoin-Logo.png");
+    box-shadow:  4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-size: contain;
     width: 300px;
     height: 50%;
@@ -170,7 +172,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
 .shop-card{

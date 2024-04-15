@@ -463,6 +463,7 @@ var game = {
                 game.display.displayBuildings();
                 game.display.displayUpgrade();
                 this.checkPrice();
+                game.save.saveGame()
             }
         },
 
@@ -699,6 +700,7 @@ var game = {
                     game.display.displayUpgrade();
                     game.display.spawnBuildings();
                     game.buildings.checkPrice();
+                    game.save.saveGame();
                 }
                 if (this.type[i] == 1){
                     user.money -= this.cost[i];
@@ -709,6 +711,7 @@ var game = {
                     game.display.displayUpgrade();
                     game.display.spawnBuildings();
                     game.buildings.checkPrice();
+                    game.save.saveGame();
                 }
             }
             
