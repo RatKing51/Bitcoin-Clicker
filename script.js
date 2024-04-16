@@ -153,7 +153,7 @@ var game = {
                 humanContainer.innerHTML = "";
                 for(i=0; i<game.buildings.amount[0]; i++){
                     let element = document.createElement("img");
-                    element.src = game.buildings.img[0];
+                    element.src = "./imgs/human-image-old.png";
                     element.classList.add("building-display-img");
                     let left;
                     if(i == 0){
@@ -358,11 +358,6 @@ var game = {
                 "linear-gradient(180deg, #bded0c 0%, #ffffff 100%)",
                 "linear-gradient(180deg, #ede60c 0%, #ffffff 100%)"
             ];
-            for (i=0; i<milestones.length; i++){
-                if(user.moneyPerSecond >= milestones[i]){
-                    getElement("leftContainer").style.background = colors[i];
-                }
-            }
         }
     },
 
