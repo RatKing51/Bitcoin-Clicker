@@ -404,11 +404,11 @@ var game = {
         ],
         img: [
             "./imgs/human-image.png",
-            "./imgs/old-computer.png",
-            "./imgs/better-keyboard.jpeg",
-            "./imgs/better-mouse.jpeg",
-            "./imgs/better-desk.jpeg",
-            "./imgs/garage.jpg"
+            "./imgs/new-computer.png",
+            "./imgs/new-keyboard.png",
+            "./imgs/new-mouse.png",
+            "./imgs/new-desk.png",
+            "./imgs/new-garage.png"
         ],
 
         id: [
