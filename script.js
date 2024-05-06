@@ -505,7 +505,8 @@ var game = {
             "2,500 Clicks",
             "3,000 Clicks",
             "3,500 Clicks",
-            "4000 Clicks"
+            "4000 Clicks",
+            "Bigger Garage Door"
         ],
         cost: [
             1500,
@@ -527,7 +528,8 @@ var game = {
             7500,
             8000,
             8500,
-            9000
+            9000,
+            100000
         ],
         description: [
             "This will double your workers income!!",
@@ -549,7 +551,8 @@ var game = {
             "This will double your cursors income",
             "This will double your cursors income",
             "This will double your cursors income",
-            "This will double your cursors income"
+            "This will double your cursors income",
+            "This will double your garages income"
         ],
         img: [
             "./imgs/human-image.png",
@@ -571,7 +574,8 @@ var game = {
             "./imgs/cursor.webp",
             "./imgs/cursor.webp",
             "./imgs/cursor.webp",
-            "./imgs/cursor.webp"
+            "./imgs/cursor.webp",
+            "./imgs/new-garage.png"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -594,9 +598,11 @@ var game = {
             1,
             1,
             1,
-            1
+            1,
+            0
         ],
         outcome: [
+            2,
             2,
             2,
             2,
@@ -638,9 +644,11 @@ var game = {
             2500,
             3000,
             3500,
-            4000
+            4000,
+            10
         ],
         owned: [
+            false,
             false,
             false,
             false,
@@ -682,7 +690,8 @@ var game = {
             false,
             false,
             false,
-            false
+            false,
+            5
         ],
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
