@@ -18,8 +18,11 @@ function addName(number){
     if(number >= 1000000 && number <= 100000000){
         return("Million")
     }
-    if(number >= 100000000){
+    if(number >= 100000000 && number <= 1000000000000){
         return("Billion")
+    }
+    if(number >= 1000000000000){
+        return("Trillion")
     }
     else{
         return("")
@@ -506,7 +509,8 @@ var game = {
             "3,000 Clicks",
             "3,500 Clicks",
             "4000 Clicks",
-            "Bigger Garage Door"
+            "Bigger Garage Door",
+            "Better Garage Door Sensor"
         ],
         cost: [
             1500,
@@ -529,7 +533,8 @@ var game = {
             8000,
             8500,
             9000,
-            100000
+            100000,
+            150000
         ],
         description: [
             "This will double your workers income!!",
@@ -552,6 +557,7 @@ var game = {
             "This will double your cursors income",
             "This will double your cursors income",
             "This will double your cursors income",
+            "This will double your garages income",
             "This will double your garages income"
         ],
         img: [
@@ -575,6 +581,7 @@ var game = {
             "./imgs/cursor.webp",
             "./imgs/cursor.webp",
             "./imgs/cursor.webp",
+            "./imgs/new-garage.png",
             "./imgs/new-garage.png"
         ],
         // 0 = building 1 = clicker 2 = click add
@@ -599,9 +606,11 @@ var game = {
             1,
             1,
             1,
+            0,
             0
         ],
         outcome: [
+            2,
             2,
             2,
             2,
@@ -645,9 +654,11 @@ var game = {
             3000,
             3500,
             4000,
-            10
+            10,
+            15
         ],
         owned: [
+            false,
             false,
             false,
             false,
@@ -691,6 +702,7 @@ var game = {
             false,
             false,
             false,
+            5,
             5
         ],
         purchase: function(i) {
