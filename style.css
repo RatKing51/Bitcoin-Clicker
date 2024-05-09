@@ -148,6 +148,7 @@
     border: 5px solid black;
     border-left: none;
     overflow-y: scroll;
+    background-image: url(./imgs/background-panel3.png);
 }
 
 .upgrades-container{
@@ -174,7 +175,7 @@
 .upgrade-img:hover{border-color: #141e20; transform: rotate(5deg);}
 
 .shop-container{
-    height: 87%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -183,7 +184,7 @@
 
 .shop-card{
     width: 95%;
-    height: 16%;
+    height: 13%;
     display: flex;
     justify-content: space-evenly;
     background: rgb(250,250,250);
@@ -195,6 +196,7 @@
     transition: .2s ease-in;
     border: 5px solid grey;
     opacity: 1;
+    flex: none;
 }
 
 .shop-card:hover{

@@ -147,7 +147,8 @@ var game = {
             var betterKeyboardContainer = getElement("betterKeyboardContainer");
             var betterMouseContainer = getElement("betterMouseContainer");
             var betterDeskContainer = getElement("betterDeskContainer");
-            var garageContainer = getElement("garageContainer")
+            var garageContainer = getElement("garageContainer");
+            var houseContainer = getElement("houseContainer");
             if (game.buildings.amount[0] <= 0){
                 humanContainer.style.visibility = "hidden";
             }
@@ -298,7 +299,31 @@ var game = {
                     garageContainer.appendChild(element);
                 }
             }
-            
+            if (game.buildings.amount[6] <= 0){
+                houseContainer.style.visibility = "hidden";
+            }
+            if (game.buildings.amount[6] > 0){
+                houseContainer.style.visibility = "visible";
+                houseContainer.innerHTML = ""
+                for(i=0; i<game.buildings.amount[6]; i++){
+                    let element = document.createElement("img");
+                    element.src = game.buildings.img[6];
+                    element.classList.add("building-display-img");
+                    let left;
+                    if(i == 0){
+                        left = 0;
+                    }
+                    else{
+                        left = (i * 100) - 75;
+                    }
+                    const top = Math.random() * 25;
+                    element.style.left = left + "px";
+                    element.style.top = top + "px";
+                    
+
+                    houseContainer.appendChild(element);
+                }
+            }
             
         },
 
@@ -371,7 +396,8 @@ var game = {
             "Better Keyboard",
             "Better Mouse",
             "Better Desk",
-            "Garage"
+            "Garage",
+            "House"
         ],
         cost: [
             100,
@@ -379,7 +405,8 @@ var game = {
             1250,
             3000,
             5500,
-            7000
+            7000,
+            15000
         ],
         income: [
             0.5,
@@ -387,9 +414,11 @@ var game = {
             3,
             5,
             10,
-            15
+            15,
+            25
         ],
         amount: [
+            0,
             0,
             0,
             0,
@@ -403,7 +432,8 @@ var game = {
             "Keyboard to get type crypto faster.",
             "You can click faster for more crypto",
             "This gives you more desk space for more monitors.",
-            "More space for more crypto minors."
+            "More space for more crypto minors.",
+            "A real business!!"
         ],
         img: [
             "./imgs/human-image.png",
@@ -411,7 +441,8 @@ var game = {
             "./imgs/new-keyboard.png",
             "./imgs/new-mouse.png",
             "./imgs/new-desk.png",
-            "./imgs/new-garage.png"
+            "./imgs/new-garage.png",
+            "./imgs/old-house.jpeg"
         ],
 
         id: [
@@ -420,10 +451,12 @@ var game = {
             "betterKeyboardId",
             "betterMouseId",
             "betterDeskId",
-            "garageId"
+            "garageId",
+            "houseId"
         ],
 
         owned: [
+            false,
             false,
             false,
             false,
@@ -438,10 +471,12 @@ var game = {
             750,
             1500,
             5000,
-            7000
+            7000,
+            15000
         ],
 
         spawned: [
+            false,
             false,
             false,
             false,
@@ -510,7 +545,9 @@ var game = {
             "3,500 Clicks",
             "4000 Clicks",
             "Bigger Garage Door",
-            "Better Garage Door Sensor"
+            "Better Garage Door Sensor",
+            "LED lights",
+            "Ring Doorbell"
         ],
         cost: [
             1500,
@@ -534,7 +571,9 @@ var game = {
             8500,
             9000,
             100000,
-            150000
+            150000,
+            500000,
+            1000000
         ],
         description: [
             "This will double your workers income!!",
@@ -558,7 +597,9 @@ var game = {
             "This will double your cursors income",
             "This will double your cursors income",
             "This will double your garages income",
-            "This will double your garages income"
+            "This will double your garages income",
+            "This will double your houses' income.",
+            "This will double your houses' income."
         ],
         img: [
             "./imgs/human-image.png",
@@ -582,7 +623,9 @@ var game = {
             "./imgs/cursor.webp",
             "./imgs/cursor.webp",
             "./imgs/new-garage.png",
-            "./imgs/new-garage.png"
+            "./imgs/new-garage.png",
+            "./imgs/old-house.jpeg",
+            "./imgs/old-house.jpeg"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -607,9 +650,13 @@ var game = {
             1,
             1,
             0,
+            0,
+            0,
             0
         ],
         outcome: [
+            2,
+            2,
             2,
             2,
             2,
@@ -655,9 +702,13 @@ var game = {
             3500,
             4000,
             10,
-            15
+            15,
+            1,
+            10
         ],
         owned: [
+            false,
+            false,
             false,
             false,
             false,
@@ -703,7 +754,9 @@ var game = {
             false,
             false,
             5,
-            5
+            5,
+            6,
+            6
         ],
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
