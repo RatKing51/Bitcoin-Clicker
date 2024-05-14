@@ -442,7 +442,7 @@ var game = {
             "./imgs/new-mouse.png",
             "./imgs/new-desk.png",
             "./imgs/new-garage.png",
-            "./imgs/old-house.jpeg"
+            "./imgs/new-house.png"
         ],
 
         id: [
@@ -547,7 +547,9 @@ var game = {
             "Bigger Garage Door",
             "Better Garage Door Sensor",
             "LED lights",
-            "Ring Doorbell"
+            "Ring Doorbell",
+            "Remolded Bathroom",
+            "Better Porch"
         ],
         cost: [
             1500,
@@ -573,7 +575,9 @@ var game = {
             100000,
             150000,
             500000,
-            1000000
+            1000000,
+            1200000,
+            1400000
         ],
         description: [
             "This will double your workers income!!",
@@ -598,6 +602,8 @@ var game = {
             "This will double your cursors income",
             "This will double your garages income",
             "This will double your garages income",
+            "This will double your houses' income.",
+            "This will double your houses' income.",
             "This will double your houses' income.",
             "This will double your houses' income."
         ],
@@ -624,8 +630,10 @@ var game = {
             "./imgs/cursor.webp",
             "./imgs/new-garage.png",
             "./imgs/new-garage.png",
-            "./imgs/old-house.jpeg",
-            "./imgs/old-house.jpeg"
+            "./imgs/new-house.png",
+            "./imgs/new-house.png",
+            "./imgs/new-house.png",
+            "./imgs/new-house.png"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -652,9 +660,13 @@ var game = {
             0,
             0,
             0,
+            0,
+            0,
             0
         ],
         outcome: [
+            2,
+            2,
             2,
             2,
             2,
@@ -704,9 +716,13 @@ var game = {
             10,
             15,
             1,
-            10
+            10,
+            15,
+            20
         ],
         owned: [
+            false,
+            false,
             false,
             false,
             false,
@@ -755,6 +771,8 @@ var game = {
             false,
             5,
             5,
+            6,
+            6,
             6,
             6
         ],
