@@ -526,7 +526,7 @@ var game = {
         title: [
             "Faster Workers",
             "More Clicker",
-            "Beter Keycaps",
+            "Better Keycaps",
             "More Ram",
             "Faster DPI",
             "Even More Clicker",
@@ -536,7 +536,7 @@ var game = {
             "DDR3 Ram",
             "Bluetooth Mouse",
             "Better Drawers",
-            "Orginzation Style",
+            "Organization Style",
             "1,000 Clicks",
             "1,500 Clicks",
             "2000 Clicks",
@@ -549,7 +549,11 @@ var game = {
             "LED lights",
             "Ring Doorbell",
             "Remolded Bathroom",
-            "Better Porch"
+            "Better Porch",
+            "House Insurance",
+            "Better Hard Hats",
+            "Brighter Safety Vest",
+            "45hz monitor.."
         ],
         cost: [
             1500,
@@ -577,7 +581,11 @@ var game = {
             500000,
             1000000,
             1200000,
-            1400000
+            1400000,
+            1600000,
+            100000,
+            150000,
+            750000
         ],
         description: [
             "This will double your workers income!!",
@@ -605,7 +613,11 @@ var game = {
             "This will double your houses' income.",
             "This will double your houses' income.",
             "This will double your houses' income.",
-            "This will double your houses' income."
+            "This will double your houses' income.",
+            "This will double your houses income.",
+            "This will double your workers income.",
+            "This will double your workers income.",
+            'This will double your old computer income.'
         ],
         img: [
             "./imgs/human-image.png",
@@ -633,7 +645,11 @@ var game = {
             "./imgs/new-house.png",
             "./imgs/new-house.png",
             "./imgs/new-house.png",
-            "./imgs/new-house.png"
+            "./imgs/new-house.png",
+            './imgs/new-house.png',
+            "./imgs/human-image.png",
+            "./imgs/human-image.png",
+            "./imgs/old-computer.png"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -662,9 +678,17 @@ var game = {
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
             0
         ],
         outcome: [
+            2,
+            2,
+            2,
+            2,
             2,
             2,
             2,
@@ -718,9 +742,17 @@ var game = {
             1,
             10,
             15,
-            20
+            20,
+            25,
+            10,
+            15,
+            10
         ],
         owned: [
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -774,7 +806,11 @@ var game = {
             6,
             6,
             6,
-            6
+            6,
+            6,
+            0,
+            0,
+            1
         ],
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
