@@ -553,7 +553,11 @@ var game = {
             "House Insurance",
             "Better Hard Hats",
             "Brighter Safety Vest",
-            "45hz monitor.."
+            "45hz monitor..",
+            "Wireless mouse",
+            "Better Keycaps",
+            "Faster Switches",
+            "RGB"
         ],
         cost: [
             1500,
@@ -585,7 +589,11 @@ var game = {
             1600000,
             100000,
             150000,
-            750000
+            750000,
+            1000000,
+            1300000,
+            1500000,
+            1700000
         ],
         description: [
             "This will double your workers income!!",
@@ -617,7 +625,11 @@ var game = {
             "This will double your houses income.",
             "This will double your workers income.",
             "This will double your workers income.",
-            'This will double your old computer income.'
+            'This will double your old computer income.',
+            "This will double your old computer income.",
+            "This will double your better keyboard income",
+            "This will double your better keyboard income",
+            "This will double your better keyboard income"
         ],
         img: [
             "./imgs/human-image.png",
@@ -649,7 +661,11 @@ var game = {
             './imgs/new-house.png',
             "./imgs/human-image.png",
             "./imgs/human-image.png",
-            "./imgs/old-computer.png"
+            "./imgs/old-computer.png",
+            "./imgs/old-computer.png",
+            "./imgs/new-keyboard.png",
+            "./imgs/new-keyboard.png",
+            "./imgs/new-keyboard.png"
         ],
         // 0 = building 1 = clicker 2 = click add
         type:[
@@ -682,9 +698,17 @@ var game = {
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
             0
         ],
         outcome: [
+            2,
+            2,
+            2,
+            2,
             2,
             2,
             2,
@@ -746,9 +770,17 @@ var game = {
             25,
             10,
             15,
-            10
+            10,
+            15,
+            10,
+            15,
+            20
         ],
         owned: [
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -810,7 +842,11 @@ var game = {
             6,
             0,
             0,
-            1
+            1,
+            1,
+            2,
+            2,
+            2
         ],
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
