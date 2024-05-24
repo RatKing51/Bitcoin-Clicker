@@ -238,7 +238,7 @@
 
 .stats-container{
     position: absolute;
-    width: 22%;
+    width: 30%;
     height: 40%;
     background-color: #7798AB;
     display:flex;
@@ -248,7 +248,7 @@
     border: 5px solid black;
     border-radius: 10px;
     top: 17%;
-    left: 38%;
+    left: 35%;
     visibility: hidden;
     transition: .2s ease-in;
     z-index: 99;

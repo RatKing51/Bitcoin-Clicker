@@ -34,7 +34,10 @@ var user = {
     moneyPerClick: 1,
     moneyPerSecond: 0,
     totalMoney: 0,
-    totalClicks: 0
+    totalClicks: 0,
+    totalBuildingsOwned: 0,
+    totalUpgradesOwned: 0,
+    totalMoneySpent: 0
 }
 
 var game = {
@@ -358,11 +361,16 @@ var game = {
             var totalMoneyElement = getElement("totalMoney");
             var totalClicksElement = getElement("totalClicks");
             var moneyPerClickElement = getElement("moneyPerClick");
+            var totalBuildingsOwned = getElement("totalBuildingsOwned");
+            var totalUpgradesOwned = getElement("totalUpgradesOwned");
+            var totalMoneySpent = getElement("totalMoneySpent");
             mpsElement.textContent = numberWithCommas(user.moneyPerSecond);
             totalMoneyElement.textContent = numberWithCommas(user.totalMoney);
             totalClicksElement.textContent = numberWithCommas(user.totalClicks);
             moneyPerClickElement.textContent = numberWithCommas(user.moneyPerClick);
-
+            totalBuildingsOwned.textContent = numberWithCommas(user.totalBuildingsOwned);
+            totalUpgradesOwned.textContent = numberWithCommas(user.totalUpgradesOwned);
+            totalMoneySpent.textContent = numberWithCommas(user.totalMoneySpent);
         },
 
         displayAchievement: function(name, description, img, i){
@@ -487,6 +495,7 @@ var game = {
 
         purchase: function(i){
             if (user.money >= this.cost[i]){
+                user.totalMoneySpent += this.cost[i]
                 user.money -= this.cost[i];
                 this.amount[i] += 1;
                 this.cost[i] = Math.floor(this.cost[i] * 1.25);
@@ -497,6 +506,7 @@ var game = {
                 game.display.displayUpgrade();
                 this.checkPrice();
                 game.save.saveGame()
+                this.addBuildings();
             }
         },
 
@@ -518,6 +528,12 @@ var game = {
                 if(user.money >= game.buildings.need[i] && game.buildings.owned[i] == false){
                     game.buildings.owned[i] = true;
                 }
+            }
+        },
+
+        addBuildings: function() {
+            for(i=0; i<this.title.length; i++){
+                user.totalBuildingsOwned += this.amount[i]
             }
         }
     },
@@ -848,8 +864,11 @@ var game = {
             2,
             2
         ],
+        amount: 0,
         purchase: function(i) {
             if(user.money >= this.cost[i] && this.owned[i] == false){
+                user.totalUpgradesOwned += 1
+                user.totalMoneySpent += this.cost[i]
                 if (this.type[i] == 0){
                     user.money -= this.cost[i];
                     this.owned[i] = true;
@@ -946,7 +965,10 @@ var game = {
                 buildingOwned:game.buildings.owned,
                 buidlingSpawned: game.buildings.spawned,
                 upgradeOwned: game.upgrades.owned,
-                achievementOwned: game.achievements.owned
+                achievementOwned: game.achievements.owned,
+                totalBuildingsOwned: user.totalBuildingsOwned,
+                totalUpgradesOwned: user.totalUpgradesOwned,
+                totalMoneySpent: user.totalMoneySpent
             }
             localStorage.setItem("gameSave", JSON.stringify(gameSave));
         },
@@ -958,6 +980,9 @@ var game = {
                 if (typeof savedGame.moneyPerClick !== "undefined") user.moneyPerClick = savedGame.moneyPerClick;
                 if (typeof savedGame.totalClicks !== "undefined") user.totalClicks = savedGame.totalClicks;
                 if (typeof savedGame.totalMoney !== "undefined") user.totalMoney = savedGame.totalMoney;
+                if (typeof savedGame.totalBuildingsOwned !== "undefined") user.totalBuildingsOwned = savedGame.totalBuildingsOwned;
+                if (typeof savedGame.totalUpgradesOwned !== "undefined") user.totalUpgradesOwned = savedGame.totalUpgradesOwned;
+                if (typeof savedGame.totalMoneySpent !== "undefined") user.totalMoneySpent = savedGame.totalMoneySpent;
                 if (typeof savedGame.moneyPerSecond !== "undefined") user.moneyPerSecond = savedGame.moneyPerSecond;
                 if (typeof savedGame.buildingCost !== "undefined"){
                     for (i=0; i<savedGame.buildingCost.length; i++){
