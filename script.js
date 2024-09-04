@@ -1093,4 +1093,3 @@ window.onload = () =>{
     game.display.displayBuildings();
     game.save.saveGame();
 }
-
